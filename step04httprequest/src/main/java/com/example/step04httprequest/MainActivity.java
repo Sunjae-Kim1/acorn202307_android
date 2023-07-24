@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         editText = findViewById(R.id.editText);
         EditText inputUrl = findViewById(R.id.inputUrl);
 
-        // 요청 머튼을 누를 시 동작할 준비
+        // 요청 버튼을 누를 시 동작할 준비
         Button requestBtn = findViewById(R.id.requestBtn);
         requestBtn.setOnClickListener(view -> {
 
@@ -54,7 +54,8 @@ public class MainActivity extends AppCompatActivity {
                 //요청 url 을 생성자의 인자로 전달해서 URL 객체를 생성한다.
                 URL url = new URL(strings[0]);
                 //URLConnection 객체를 원래 type (자식 type) 으로 casting 해서 받는다.
-                HttpURLConnection conn=(HttpURLConnection) url.openConnection();
+                HttpURLConnection conn=(HttpURLConnection)
+                url.openConnection();
                 //정상적으로 연결이 되었다면
                 if(conn != null){
                     conn.setConnectTimeout(20000); //응답을 기다리는 최대 대기 시간
