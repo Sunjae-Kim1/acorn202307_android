@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements Util.RequestListe
             map.put("msg" , msg);
 
             // Util 을 이용해서 Http 요청을 한다.
-            Util.sendPostRequest(1 , "http://192.168.0.32:9000/boot07/android/tweet2" , map , this);
+            Util.sendGetRequest(1 , "http://192.168.0.32:9000/boot07/android/tweet2" , map , this);
         });
 
         // 3 번째 버튼도 리스너 등록
