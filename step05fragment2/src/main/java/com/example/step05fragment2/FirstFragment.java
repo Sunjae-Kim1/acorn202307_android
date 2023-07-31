@@ -15,6 +15,8 @@ public class FirstFragment extends Fragment {
 
     private FragmentFirstBinding binding;
 
+    // Fragment 가 제어할 View 를 만들어서 리턴해야 한다.
+
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
@@ -22,6 +24,8 @@ public class FirstFragment extends Fragment {
     ) {
 
         binding = FragmentFirstBinding.inflate(inflater, container, false);
+
+        // Binding 객체가 리턴해주는 View 를 리턴한다.
         return binding.getRoot();
 
     }

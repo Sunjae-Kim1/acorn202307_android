@@ -55,9 +55,11 @@ public class MainActivity extends AppCompatActivity {
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
+        // id 가 fab 인 UI 에 Click Event 리스너 등록
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // SnackBar 띄우기
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAnchorView(R.id.fab)
                         .setAction("Action", null).show();
@@ -65,28 +67,36 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /*
+        우 상단 "옵션 메뉴" 를 만들고 싶으면 onCreateOptionMenu() 메소드를 Override 해서
+        Menu 를 구성하면 된다.
+    */
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+        // res/menu/menu_main.xml 문서를 활용해서 메뉴 아이템 구성하기
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+        // 클릭한 아이템의 ID 가 리턴
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
+        // ID 를 이용해서 분기하기
         if (id == R.id.action_settings) {
             return true;
+        } else if (id == R.id.one) {
+
+        } else if (id == R.id.two) {
+
         }
 
         return super.onOptionsItemSelected(item);
     }
 
+    // 좌 상단 Up 버튼이 동작하기 위한 설정
     @Override
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
