@@ -12,6 +12,13 @@ class Gun{
     }
 }
 
+// 가상의 Dialog Class
+class Dialog{
+    fun setTitle(title: String){}
+    fun setContent(content: String){}
+    fun create(){}
+}
+
 fun main(){
     val g1 = Gun()
 
@@ -29,5 +36,19 @@ fun main(){
         fire()
         fire()
         end()
+    }
+
+    val d1 = Dialog()
+    with(d1){
+        setTitle("제목")
+        setContent("내용")
+        create()
+    }
+
+    // 객체 생성과 동시에 필요한 작업을 한 후에 참조값을 대입할 수 있다.
+    val d2 = Dialog().apply {
+        setTitle("제목")
+        setContent("내용")
+        create()
     }
 }
