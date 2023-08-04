@@ -1,5 +1,14 @@
 package com.example.hellokotlin
 
+/*
+    Type?
+    ?.
+    !!.
+
+    ?: Elvis 연산자
+    value ?: 기본값
+*/
+
 // 매개변수에 전달된 문자열의 길이를 리턴하는 함수
 fun getLength(str: String?): Int?{
     // Length 는 Int? Type 이다.
