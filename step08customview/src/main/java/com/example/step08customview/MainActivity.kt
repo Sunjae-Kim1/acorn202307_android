@@ -9,8 +9,11 @@ class MainActivity : AppCompatActivity() {
         // setContentView(R.layout.activity_main)
 
         // MyView 객체를 생성해서 전달하기
-        // setContentView(MyView(this))
+        setContentView(MyView(this))
 
-        setContentView(R.layout.activity_main)
+        // Layour XML 문서를 이용해서 MyView 객체를 사용하려면
+        // Context 와 AttributeSet 객체를 인자로 전달받는 생성자가
+        // 존재해야 한다.
+        // setContentView(R.layout.activity_main)
     }
 }
