@@ -36,12 +36,31 @@ class GameView @JvmOverloads constructor(
     var unitX = 0
     var unitY = 0
 
+    // Null 로 초기화괸 Bitmap 객체를 담을 수 있는 방 4개짜리 배열 객체 생성
+    var unitImgs = arrayOfNulls<Bitmap>(4)
+
+    // Dragon 이미지를 그릴 때 사용할 Index 값
+    var unitIndex = 0
+
+    var count = 0
+
     // 게임 화면을 준비하는 함수
     fun init() {
         // 사용할 이미지를 미리 로딩해서 참조값을 필드에 저장하기
         // 원본 이미지
         var backImg: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.backbg)
+
         var unit1: Bitmap = BitmapFactory.decodeResource(resources , R.drawable.unit1)
+        unitImgs[0] = Bitmap.createScaledBitmap(unit1 , unitSize , unitSize , false)
+
+        var unit2: Bitmap = BitmapFactory.decodeResource(resources , R.drawable.unit2)
+        unitImgs[1] = Bitmap.createScaledBitmap(unit2 , unitSize , unitSize , false)
+
+        var unit3: Bitmap = BitmapFactory.decodeResource(resources , R.drawable.unit3)
+        unitImgs[2] = Bitmap.createScaledBitmap(unit3 , unitSize , unitSize , false)
+
+        // 3 번 방에 2 번쨰 Dragon 이미지를 넣는다.
+        unitImgs[3] = unitImgs[2]
 
         // 원본 이미지를 원하는 크기로 변경해서 필드에 저장
         this.backImg = Bitmap.createScaledBitmap(backImg, width, height, false)
@@ -67,7 +86,27 @@ class GameView @JvmOverloads constructor(
         canvas?.drawBitmap(backImg , 0f , back1Y.toFloat() , null)
         canvas?.drawBitmap(backImg , 0f , back2Y.toFloat() , null)
 
-        canvas?.drawBitmap(unit1 , (unitX - unitSize / 2).toFloat() , (unitY -unitSize / 2).toFloat() , null)
+        unitImgs[unitIndex]?.let {
+            // Dragon 이미지 그리기
+            canvas?.drawBitmap(
+                it ,
+                (unitX - unitSize / 2).toFloat() ,
+                (unitY -unitSize / 2).toFloat() ,
+                null)
+        }
+
+        // 카운트 값을 증가
+        count++
+
+        //  만일 Count 를 20 으로 나눈 나머지 값이 0 이라면
+        if(count % 10 == 0) {
+            // Dragon 애니메이션 관련 처리
+            unitIndex++
+            if (unitIndex == 4) { // 만일 존재하지 않는 Index 라면
+                unitIndex = 0 // 처음으로 돌린다.
+            }
+        }
+
         // 배경 이미지 관련 처리
         back1Y += 5
         back2Y += 5
